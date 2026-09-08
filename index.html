@@ -568,23 +568,31 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 
 /* ============ AMENITIES ============ */
 .mr-amenities-grid{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1px;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
   background:var(--line-soft); border:1px solid var(--line-soft); border-radius:20px; overflow:hidden;
 }
 .mr-amenity{
-  background:var(--ink-2); padding:36px 24px; display:flex; flex-direction:column; gap:14px;
+  background:var(--ink-2); padding:26px 22px; display:flex; flex-direction:row; align-items:center; gap:14px;
   transition:background .35s ease;
 }
 .mr-amenity:hover{ background:var(--ink-3); }
-.mr-amenity-ph{
-  width:100%; height:88px; border-radius:10px;
-  background:linear-gradient(135deg, rgba(184,146,61,.16), rgba(16,43,32,.08));
-  border:1px dashed var(--line);
-  display:flex; align-items:center; justify-content:center;
+.mr-amenity svg{ width:22px; height:22px; stroke:var(--forest); flex-shrink:0; }
+.mr-amenity span{ font-size:0.86rem; color:var(--muted); font-weight:500; line-height:1.3; }
+/* 13 amenities in a 4-col grid: 4/4/4/1 — center the final orphan card */
+.mr-amenities-grid > .mr-amenity:nth-child(13){ grid-column:2 / span 2; justify-content:center; text-align:center; }
+@media (max-width:1024px){
+  .mr-amenities-grid{ grid-template-columns:repeat(3,1fr); }
+  /* 13 in 3 cols: 3/3/3/3/1 — center the final orphan card */
+  .mr-amenities-grid > .mr-amenity:nth-child(13){ grid-column:2 / span 1; }
 }
-.mr-amenity-ph svg{ width:26px; height:26px; stroke:var(--muted-2); opacity:.65; }
-.mr-amenity svg{ width:24px; height:24px; stroke:var(--forest); }
-.mr-amenity span{ font-size:0.88rem; color:var(--muted); font-weight:500; }
+@media (max-width:640px){
+  .mr-amenities-grid{ grid-template-columns:repeat(2,1fr); }
+  .mr-amenity{ padding:20px 16px; gap:10px; }
+  .mr-amenity span{ font-size:0.82rem; }
+  .mr-amenity svg{ width:20px; height:20px; }
+  /* 13 in 2 cols: center the final orphan card across both columns */
+  .mr-amenities-grid > .mr-amenity:nth-child(13){ grid-column:1 / span 2; justify-content:center; }
+}
 
 /* ============ ESTIMATOR ============ */
 #estimator{ padding-top:min(9vw,90px); padding-bottom:min(9vw,90px); }
@@ -1142,19 +1150,19 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
     </div>
   </div>
   <div class="mr-amenities-grid mr-reveal">
-    <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3"/></svg><span>Luxury Rooms</span></div>
-    <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg><span>Banquet Hall</span></div>
-    <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg><span>Wedding Venue</span></div>
-    <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M4 21V11h16v10M6 11V6a2 2 0 012-2h8a2 2 0 012 2v5"/></svg><span>Restaurant</span></div>
-    <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 9h4a2 2 0 010 4H8V9zM8 13v3"/></svg><span>Free Parking</span></div>
-    <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg><span>Power Backup</span></div>
-    <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/></svg><span>24×7 Security</span></div>
-    <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20c1-3 3-5 6-5s5 2 6 5M12 20c1-3 3-5 6-5"/></svg><span>Family Friendly</span></div>
-    <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg><span>Air Conditioned Spaces</span></div>
-    <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span>Professional Hospitality</span></div>
-    <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21 8 13.5 2.5 9h7z"/></svg><span>Premium Experience</span></div>
-    <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="8" cy="14" r="3"/><circle cx="16" cy="10" r="2"/><path d="M8 17v3M16 12v5M4 20h16"/></svg><span>Kids Play Area</span></div>
-    <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 2c2 3 1 4.5-.5 6C10 9.5 9 11 9 13a3 3 0 006 0c0-1-.5-2-1.5-3 1.5 1 2.5 2.5 2.5 4.5a5 5 0 01-10 0c0-3.5 2.5-6 4-8.5C10.5 4.5 11 3 12 2z"/></svg><span>Bonfire Zone</span></div>
+    <div class="mr-amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3"/></svg><span>Luxury Rooms</span></div>
+    <div class="mr-amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg><span>Banquet Hall</span></div>
+    <div class="mr-amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg><span>Wedding Venue</span></div>
+    <div class="mr-amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M4 21V11h16v10M6 11V6a2 2 0 012-2h8a2 2 0 012 2v5"/></svg><span>Restaurant</span></div>
+    <div class="mr-amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 9h4a2 2 0 010 4H8V9zM8 13v3"/></svg><span>Free Parking</span></div>
+    <div class="mr-amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg><span>Power Backup</span></div>
+    <div class="mr-amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/></svg><span>24×7 Security</span></div>
+    <div class="mr-amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20c1-3 3-5 6-5s5 2 6 5M12 20c1-3 3-5 6-5"/></svg><span>Family Friendly</span></div>
+    <div class="mr-amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg><span>Air Conditioned Spaces</span></div>
+    <div class="mr-amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span>Professional Hospitality</span></div>
+    <div class="mr-amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21 8 13.5 2.5 9h7z"/></svg><span>Premium Experience</span></div>
+    <div class="mr-amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="8" cy="14" r="3"/><circle cx="16" cy="10" r="2"/><path d="M8 17v3M16 12v5M4 20h16"/></svg><span>Kids Play Area</span></div>
+    <div class="mr-amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 2c2 3 1 4.5-.5 6C10 9.5 9 11 9 13a3 3 0 006 0c0-1-.5-2-1.5-3 1.5 1 2.5 2.5 2.5 4.5a5 5 0 01-10 0c0-3.5 2.5-6 4-8.5C10.5 4.5 11 3 12 2z"/></svg><span>Bonfire Zone</span></div>
   </div>
 </section>
 
