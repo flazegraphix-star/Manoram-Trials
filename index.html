@@ -100,7 +100,7 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
   font-weight:600;
   transition:transform .4s var(--ease), box-shadow .4s var(--ease), background .4s var(--ease);
 }
-.mr-btn svg{ width:17px; height:17px; }
+.mr-btn svg{ width:17px; height:17px; stroke:currentColor; flex-shrink:0; }
 .mr-btn-solid{
   background:linear-gradient(135deg, var(--gold-2), var(--gold));
   color:#2C2A26;
@@ -128,8 +128,8 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
   50%{ background-position:100% 0%; }
 }
 
-.mr-section{ padding:min(15vw,150px) 6vw; max-width:1360px; margin:0 auto; }
-.mr-head{ max-width:600px; margin-bottom:64px; }
+.mr-section{ padding:min(9vw,96px) 6vw; max-width:1360px; margin:0 auto; }
+.mr-head{ max-width:600px; margin-bottom:40px; }
 .mr-head h2{ margin-top:18px; font-size:clamp(2.2rem,4.6vw,3.4rem); line-height:1.1; }
 .mr-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
 
@@ -189,13 +189,13 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 
 /* ============ HERO ============ */
 .mr-hero{
-  position:relative; min-height:100vh;
+  position:relative; min-height:94vh;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
-  text-align:center; padding:150px 6vw 100px; overflow:hidden;
+  text-align:center; padding:130px 6vw 70px; overflow:hidden;
   color:var(--ink);
 }
-/* Real drone photograph of the property, Ken-Burns drift for subtle
-   non-intrusive motion. Sits under a layered dark-luxury treatment so
+/* Resort photograph, subtle Ken-Burns drift for gentle
+   non-intrusive motion. Sits under a light layered treatment so
    the image stays clearly visible while every word above it reads
    cleanly on any device. */
 .mr-hero-photo{
@@ -210,20 +210,19 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 .mr-hero-bg{
   position:absolute; inset:0; z-index:1;
   background:
-    linear-gradient(178deg, rgba(6,9,7,.82) 0%, rgba(8,12,9,.5) 30%, rgba(7,10,8,.38) 52%, rgba(5,7,6,.88) 100%),
-    radial-gradient(ellipse at 50% 100%, rgba(0,0,0,.55), transparent 62%);
+    linear-gradient(180deg, rgba(6,9,7,.58) 0%, rgba(7,10,8,.22) 34%, rgba(7,10,8,.3) 62%, rgba(6,9,7,.6) 100%);
 }
 .mr-hero-vignette{
   position:absolute; inset:0; z-index:1; pointer-events:none;
-  box-shadow:inset 0 0 min(22vw,320px) rgba(0,0,0,.62);
+  box-shadow:inset 0 0 min(14vw,200px) rgba(0,0,0,.4);
 }
 .mr-hero-fog{
-  position:absolute; inset:0; z-index:1; opacity:.5; mix-blend-mode:screen;
+  position:absolute; inset:0; z-index:1; opacity:.32; mix-blend-mode:screen;
   background:
-    radial-gradient(ellipse at 50% 8%, rgba(210,180,95,.22), transparent 55%);
+    radial-gradient(ellipse at 50% 8%, rgba(210,180,95,.16), transparent 55%);
   animation:mrFog 12s ease-in-out infinite alternate;
 }
-@keyframes mrFog{ from{ opacity:.3; } to{ opacity:.6; } }
+@keyframes mrFog{ from{ opacity:.2; } to{ opacity:.4; } }
 .mr-hero-particles{ position:absolute; inset:0; z-index:1; overflow:hidden; pointer-events:none; }
 .mr-hero-particles span{
   position:absolute; bottom:-6%; width:3px; height:3px; border-radius:50%;
@@ -354,13 +353,6 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 @keyframes mrScroll{ 0%{ transform:scaleY(0); transform-origin:top;} 50%{ transform:scaleY(1); transform-origin:top;} 51%{ transform-origin:bottom; } 100%{ transform:scaleY(0); transform-origin:bottom; } }
 
 /* ============ GRAND LAUNCH OFFER — FOCAL SECTION ============ */
-.mr-story{
-  text-align:center; font-family:var(--serif); font-style:italic; font-weight:400;
-  font-size:clamp(1rem,1.8vw,1.25rem); color:var(--muted); letter-spacing:.01em;
-  padding:min(6vw,58px) 6vw; max-width:900px; margin:0 auto;
-}
-.mr-story-inline{ padding:0 6vw 30px; }
-
 .mr-launch{
   position:relative;
   padding:min(13vw,150px) 6vw;
@@ -703,30 +695,18 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 .mr-photo-tile img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s var(--ease); }
 .mr-photo-tile:hover img{ transform:scale(1.07); }
 .mr-photo-cap{ position:absolute; left:0; right:0; bottom:0; padding:14px 16px; font-size:0.72rem; letter-spacing:.14em; text-transform:uppercase; color:#fff; background:linear-gradient(0deg, rgba(19,34,26,.75), transparent); }
+.mr-pool-collage{ display:grid; grid-template-columns:1.4fr 1fr; gap:16px; margin:36px 0; }
+.mr-pool-collage-side{ display:grid; grid-template-rows:1fr 1fr; gap:16px; }
+.mr-pool-collage .mr-photo-tile{ aspect-ratio:auto; height:100%; }
+@media (max-width:760px){
+  .mr-pool-collage{ grid-template-columns:1fr; }
+  .mr-pool-collage .mr-photo-tile{ aspect-ratio:4/3; height:auto; }
+  .mr-pool-collage-side{ grid-template-columns:1fr 1fr; grid-template-rows:none; }
+}
 @media (max-width:820px){
   .mr-photo-row{ grid-template-columns:repeat(2,1fr); }
   .mr-photo-row.two{ grid-template-columns:1fr; }
 }
-
-/* ============ TIMELINE ============ */
-.mr-progress-track{ height:6px; border-radius:6px; background:rgba(213,196,164,.5); border:1px solid var(--line-soft); overflow:hidden; }
-.mr-progress-fill{ height:100%; width:0%; border-radius:6px; background:linear-gradient(90deg,var(--gold),var(--gold-2)); box-shadow:0 0 16px rgba(184,146,61,.5); transition:width 1.4s var(--ease); }
-.mr-progress-label{ margin-top:14px; display:flex; justify-content:space-between; font-size:0.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
-.mr-progress-label strong{ color:var(--forest); font-family:var(--serif); font-size:0.95rem; text-transform:none; }
-.mr-timeline-grid{ margin-top:56px; display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
-.mr-tl-item{ padding:28px 20px; text-align:left; transition:transform .4s var(--ease), border-color .4s ease; }
-.mr-tl-item:hover{ transform:translateY(-6px); border-color:rgba(184,146,61,.4); }
-.mr-tl-dot{ width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:14px; border:1px solid var(--line-soft); }
-.mr-tl-dot svg{ width:16px; height:16px; stroke:var(--muted); }
-.mr-tl-item.done .mr-tl-dot{ background:linear-gradient(135deg,var(--gold-2),var(--gold)); border-color:transparent; }
-.mr-tl-item.done .mr-tl-dot svg{ stroke:#2C2A26; }
-.mr-tl-item.active .mr-tl-dot{ border-color:var(--gold); }
-.mr-tl-item.active .mr-tl-dot svg{ stroke:var(--forest); }
-.mr-tl-when{ display:block; font-size:0.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--forest); margin-bottom:8px; }
-.mr-tl-item h4{ font-size:1rem; margin-bottom:6px; }
-.mr-tl-item p{ font-size:0.87rem; color:var(--muted); }
-.mr-tl-status{ display:inline-block; margin-top:12px; padding:4px 12px; font-size:0.68rem; letter-spacing:.12em; text-transform:uppercase; border-radius:100px; border:1px solid var(--line-soft); color:var(--muted); }
-.mr-tl-item.done .mr-tl-status, .mr-tl-item.active .mr-tl-status{ color:var(--forest); border-color:var(--line); }
 
 /* ============ LOCATION ============ */
 .mr-loc-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:stretch; }
@@ -885,18 +865,18 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
   .mr-about-visual{ order:-1; aspect-ratio:16/10; }
   .mr-footer-top{ grid-template-columns:1fr 1fr; }
   .mr-gallery-grid{ grid-template-columns:repeat(2,1fr); }
-  .mr-timeline-grid{ grid-template-columns:repeat(2,1fr); }
   .mr-est-grid{ grid-template-columns:1fr; }
   .mr-est-summary{ position:static; }
   .mr-sig-grid{ grid-template-columns:repeat(2,1fr); }
-  .mr-strip-grid{ grid-template-columns:repeat(2,1fr); }
   .mr-hero{ padding:130px 5vw 80px; }
   .mr-hero-strip{ max-width:760px; gap:10px; }
 }
 @media (max-width:760px){
   .mr-nav-links, .mr-nav-cta{ display:none; }
   .mr-nav-toggle{ display:flex; }
-  .mr-section{ padding:96px 6vw; }
+  .mr-section{ padding:56px 5.5vw; }
+  .mr-head{ margin-bottom:28px; }
+  .mr-divider{ padding:0 6vw; opacity:.4; }
   .mr-form-row{ grid-template-columns:1fr; }
   .mr-footer-top{ grid-template-columns:1fr; gap:32px; }
   .mr-hero{ padding:112px 5vw 48px; min-height:100svh; }
@@ -958,7 +938,7 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
       <a href="#about">About</a>
       <a href="#stay">Stay</a>
       <a href="#weddings">Weddings</a>
-      <a href="#events">Events</a>
+      <a href="#amenities">Amenities</a>
       <a href="#estimator">Estimate Cost</a>
       <a href="#gallery">Gallery</a>
       <a href="#location">Location</a>
@@ -975,7 +955,7 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
   <a href="#about">About</a>
   <a href="#stay">Stay</a>
   <a href="#weddings">Weddings</a>
-  <a href="#events">Events</a>
+  <a href="#amenities">Amenities</a>
   <a href="#estimator">Estimate Cost</a>
   <a href="#gallery">Gallery</a>
   <a href="#location">Location</a>
@@ -1097,16 +1077,13 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
   </div>
 </section>
 
-<p class="mr-story">Discover the experience.</p>
-
 <!-- ============ ABOUT ============ -->
 <section class="mr-section" id="about">
   <div class="mr-about-grid">
     <div class="mr-about-copy mr-reveal">
-      <span class="mr-pill">Coming Soon</span>
+      <span class="mr-pill">Opening September 2026</span>
       <h2>A New Landmark<br>of Luxury</h2>
-      <p>Manoram Resorts is being crafted as an address of quiet distinction: a place where celebrations are elevated, stays feel unhurried, and hospitality is personal rather than procedural. Every corner is being considered with the same care, from the grand banquet spaces to the guest suites.</p>
-      <p>As the city's newest premium destination, Manoram Resorts will bring together elegant architecture, generous spaces and attentive service — designed to become a landmark in its own right.</p>
+      <p>Gorakhpur's newest address of quiet distinction — where celebrations are elevated, stays feel unhurried, and hospitality is personal rather than procedural.</p>
       <a href="#contact" class="mr-btn mr-btn-outline" style="margin-top:8px;">Get in Touch</a>
     </div>
     <div class="mr-about-visual mr-glass mr-reveal d2" style="padding:0; overflow:hidden;">
@@ -1122,44 +1099,14 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 <section class="mr-section" id="stay">
   <div class="mr-head mr-reveal">
     <span class="mr-eyebrow">Luxury Stay</span>
-    <h2>Rooms designed for calm, arriving soon.</h2>
-    <p class="mr-lede">Our interiors are being finished with the same attention we bring to every part of Manoram Resorts. Here's what to expect when the doors open.</p>
+    <h2>Premium rooms, thoughtfully finished.</h2>
+    <p class="mr-lede">Designer false ceilings, marble flooring and quiet comfort — guest rooms built for an unhurried stay.</p>
   </div>
   <div class="mr-photo-row two mr-reveal">
     <div class="mr-photo-tile"><img src="images/room-01.jpg" alt="Premium guest room with sofa seating and designer false ceiling" loading="lazy" decoding="async"><div class="mr-photo-cap">Premium Guest Room</div></div>
     <div class="mr-photo-tile"><img src="images/room-02.jpg" alt="Spacious luxury bedroom with marble flooring at Manoram Resorts" loading="lazy" decoding="async"><div class="mr-photo-cap">Luxury Bedroom Suite</div></div>
   </div>
-  <div class="mr-grid">
-    <div class="mr-card mr-glass mr-reveal d1">
-      <span class="num">01</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3"/></svg>
-      <h4>Premium Rooms</h4>
-      <p>Generously proportioned suites finished with restraint and quality.</p>
-      <span class="tag">Coming Soon</span>
-    </div>
-    <div class="mr-card mr-glass mr-reveal d2">
-      <span class="num">02</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M4 20h16M6 20V8l6-4 6 4v12"/><path d="M10 20v-6h4v6"/></svg>
-      <h4>Elegant Interiors</h4>
-      <p>Warm materials and considered detailing throughout every space.</p>
-      <span class="tag">Coming Soon</span>
-    </div>
-    <div class="mr-card mr-glass mr-reveal d3">
-      <span class="num">03</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-      <h4>Modern Comfort</h4>
-      <p>Thoughtful amenities built around how our guests actually stay.</p>
-      <span class="tag">Coming Soon</span>
-    </div>
-    <div class="mr-card mr-glass mr-reveal d4">
-      <span class="num">04</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21 8 13.5 2.5 9h7z"/></svg>
-      <h4>Luxury Experience</h4>
-      <p>A stay defined by quiet service rather than spectacle.</p>
-      <span class="tag">Coming Soon</span>
-    </div>
-  </div>
-  <div class="mr-photo-row two mr-reveal" style="margin-top:56px;">
+  <div class="mr-photo-row two mr-reveal" style="margin-top:22px;">
     <div class="mr-photo-tile"><img src="images/bathroom-01.jpg" alt="Marble-finished en-suite bathroom with floral wall tiles" loading="lazy" decoding="async"><div class="mr-photo-cap">En-Suite Bathroom</div></div>
     <div class="mr-photo-tile"><img src="images/bathroom-02.jpg" alt="Modern washroom with rain shower and marble finish" loading="lazy" decoding="async"><div class="mr-photo-cap">Rain-Shower Washroom</div></div>
   </div>
@@ -1169,35 +1116,13 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 <section class="mr-section" id="weddings">
   <div class="mr-head mr-reveal">
     <span class="mr-eyebrow">Weddings</span>
-    <h2>A grand venue for a destination-style celebration.</h2>
-    <p class="mr-lede">Manoram Resorts is being built with weddings in mind — expansive lawns, banquet halls and a setting that feels special without leaving the city.</p>
+    <h2>A grand venue for celebrations.</h2>
+    <p class="mr-lede">An expansive lawn, an elegant indoor lounge and festive décor — built to host your biggest days, right here in Gorakhpur.</p>
   </div>
   <div class="mr-photo-row mr-reveal">
-    <div class="mr-photo-tile"><img src="images/lawn-01.jpg" alt="Manoram Resorts lush wedding lawn decorated with floral mandap at night" loading="lazy" decoding="async"><div class="mr-photo-cap">Grand Wedding Lawn</div></div>
-    <div class="mr-photo-tile"><img src="images/hall-01.jpg" alt="Wedding stage decor with red drapes and floral arrangements at Manoram Resorts" loading="lazy" decoding="async"><div class="mr-photo-cap">Bridal Stage Décor</div></div>
-    <div class="mr-photo-tile"><img src="images/hall-02.jpg" alt="Illuminated floral ceiling installations above the wedding lawn" loading="lazy" decoding="async"><div class="mr-photo-cap">Signature Floral Canopy</div></div>
-  </div>
-  <div class="mr-grid">
-    <div class="mr-card mr-glass mr-reveal d1">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg>
-      <h4>Destination-Style Weddings</h4>
-      <p>All the grandeur of a destination wedding, right here in Gorakhpur.</p>
-    </div>
-    <div class="mr-card mr-glass mr-reveal d2">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M4 21c2-6 6-9 8-9s6 3 8 9"/><circle cx="12" cy="7" r="3"/></svg>
-      <h4>Luxury Celebrations</h4>
-      <p>Every function — from sangeet to reception — hosted in style.</p>
-    </div>
-    <div class="mr-card mr-glass mr-reveal d3">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M4 20h16M4 20V10l8-6 8 6v10"/><path d="M9 20v-5h6v5"/></svg>
-      <h4>Elegant Decor Possibilities</h4>
-      <p>Spaces that adapt beautifully to your vision and theme.</p>
-    </div>
-    <div class="mr-card mr-glass mr-reveal d4">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
-      <h4>Grand Venue</h4>
-      <p>Halls and lawns built to comfortably host large gatherings.</p>
-    </div>
+    <div class="mr-photo-tile"><img src="images/resort-exterior-03.jpg" alt="Manoram Resorts open-air lawn set for a celebration, with round tables beneath a lit canopy" loading="lazy" decoding="async"><div class="mr-photo-cap">Grand Lawn &amp; Venue</div></div>
+    <div class="mr-photo-tile"><img src="images/lawn-01.jpg" alt="Illuminated hanging floral installations above the celebration lawn" loading="lazy" decoding="async"><div class="mr-photo-cap">Signature Floral Décor</div></div>
+    <div class="mr-photo-tile"><img src="images/hall-01.jpg" alt="Elegant indoor lounge with lotus-motif ceiling and chandelier lighting" loading="lazy" decoding="async"><div class="mr-photo-cap">Elegant Indoor Lounge</div></div>
   </div>
   <div class="mr-center-cta mr-reveal"><a href="#contact" class="mr-btn mr-btn-solid">Plan Your Wedding</a></div>
 </section>
@@ -1205,35 +1130,18 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 <div class="mr-divider"><span></span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4z"/></svg><span></span></div>
 
 <!-- ============ EVENTS ============ -->
-<section class="mr-section" id="events">
-  <div class="mr-head mr-reveal">
-    <span class="mr-eyebrow">Events</span>
-    <h2>Spaces suited to every kind of gathering.</h2>
-    <p class="mr-lede">From boardroom meetings to family functions, Manoram Resorts is designed with the flexibility real events need.</p>
-  </div>
-  <div class="mr-grid">
-    <div class="mr-card mr-glass mr-reveal d1"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v3M16 3v3"/></svg><h4>Corporate Meetings</h4><p>Professional venues for meetings that mean business.</p></div>
-    <div class="mr-card mr-glass mr-reveal d2"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M12 8v13M8 8a4 4 0 118 0M8 8c0-2 2-5 4-5s4 3 4 5"/><rect x="4" y="8" width="16" height="4" rx="1"/></svg><h4>Birthday Celebrations</h4><p>Joyful spaces built for milestone moments.</p></div>
-    <div class="mr-card mr-glass mr-reveal d3"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M5 21V11l7-7 7 7v10"/><path d="M9 21v-6h6v6"/></svg><h4>Reception</h4><p>Elegant arrival spaces that set the tone for any event.</p></div>
-    <div class="mr-card mr-glass mr-reveal d4"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20c1-3 3-5 6-5s5 2 6 5M12 20c1-3 3-5 6-5"/></svg><h4>Private Parties</h4><p>Intimate settings for gatherings that call for privacy.</p></div>
-    <div class="mr-card mr-glass mr-reveal d1"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M4 21c2-6 6-9 8-9s6 3 8 9"/><circle cx="12" cy="7" r="3"/></svg><h4>Family Functions</h4><p>Warm, welcoming spaces built for togetherness.</p></div>
-    <div class="mr-card mr-glass mr-reveal d2"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M3 21V10l9-6 9 6v11"/><path d="M9 21v-7h6v7"/></svg><h4>Business Events</h4><p>Reliable infrastructure for conferences and launches.</p></div>
-    <div class="mr-card mr-glass mr-reveal d3"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg><h4>Premium Banquets</h4><p>Grand halls designed to comfortably host large groups.</p></div>
-  </div>
-</section>
-
-<div class="mr-divider"><span></span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4z"/></svg><span></span></div>
-
 <!-- ============ AMENITIES ============ -->
 <section class="mr-section" id="amenities">
   <div class="mr-head mr-reveal">
     <span class="mr-eyebrow">Amenities</span>
     <h2>Everything a premium stay or event requires.</h2>
   </div>
-  <div class="mr-photo-row mr-reveal">
-    <div class="mr-photo-tile"><img src="images/pool-01.jpg" alt="Illuminated swimming pool with lotus mural water feature at Manoram Resorts" loading="lazy" decoding="async"><div class="mr-photo-cap">Signature Pool &amp; Water Wall</div></div>
-    <div class="mr-photo-tile"><img src="images/pool-03.jpg" alt="Swimming pool deck with marble flooring and ambient lighting" loading="lazy" decoding="async"><div class="mr-photo-cap">Poolside Deck</div></div>
-    <div class="mr-photo-tile"><img src="images/pool-02.jpg" alt="Twilight view of the resort swimming pool with lotus artwork" loading="lazy" decoding="async"><div class="mr-photo-cap">Evening Ambience</div></div>
+  <div class="mr-pool-collage mr-reveal">
+    <div class="mr-photo-tile"><img src="images/pool-02.jpg" alt="Swimming pool at dusk with a lotus-motif water feature at Manoram Resorts" loading="lazy" decoding="async"><div class="mr-photo-cap">Swimming Pool — Lotus Water Feature</div></div>
+    <div class="mr-pool-collage-side">
+      <div class="mr-photo-tile"><img src="images/pool-03.jpg" alt="Close-up of the pool's water feature against the lotus mural" loading="lazy" decoding="async"></div>
+      <div class="mr-photo-tile"><img src="images/pool-01.jpg" alt="Tiled swimming pool illuminated in the evening" loading="lazy" decoding="async"></div>
+    </div>
   </div>
   <div class="mr-amenities-grid mr-reveal">
     <div class="mr-amenity"><div class="mr-amenity-ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3"/></svg><span>Luxury Rooms</span></div>
@@ -1270,7 +1178,7 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 
   <div class="mr-sig-grid mr-reveal">
     <div class="mr-sig-card"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M3 21V10l9-6 9 6v11"/><path d="M9 21v-7h6v7"/></svg><span>Exclusive Resort Access</span></div>
-    <div class="mr-sig-card"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M4 21c2-6 6-9 8-9s6 3 8 9"/><circle cx="12" cy="7" r="3"/></svg><span>Grand Wedding Lawn</span></div>
+    <div class="mr-sig-card"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M4 21c2-6 6-9 8-9s6 3 8 9"/><circle cx="12" cy="7" r="3"/></svg><span>Grand Lawn &amp; Venue</span></div>
     <div class="mr-sig-card"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg><span>Elegant Banquet Hall</span></div>
     <div class="mr-sig-card mr-sig-card-hero"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3"/></svg><span class="mr-sig-card-num">5</span><span>Premium Guest Rooms</span></div>
     <div class="mr-sig-card"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><circle cx="12" cy="12" r="9"/><path d="M5 12c1.5 1.5 2.5 1.5 4 0s2.5-1.5 4 0 2.5 1.5 4 0"/></svg><span>Swimming Pool Access</span></div>
@@ -1305,27 +1213,6 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
   </div>
 </section>
 
-<p class="mr-story">Let's plan your day.</p>
-
-<!-- ============ PREMIUM EXPERIENCE STRIP ============ -->
-<section class="mr-section mr-strip">
-  <div class="mr-head center mr-reveal" style="margin-left:auto;margin-right:auto;">
-    <h3 class="mr-strip-heading">Everything You Need for One Extraordinary Celebration</h3>
-  </div>
-  <div class="mr-strip-grid mr-reveal">
-    <div class="mr-strip-item"><span>&#10003;</span>Complete Resort Venue</div>
-    <div class="mr-strip-item"><span>&#10003;</span>Luxury Event Spaces</div>
-    <div class="mr-strip-item"><span>&#10003;</span>Beautiful Landscaped Gardens</div>
-    <div class="mr-strip-item"><span>&#10003;</span>Elegant Banquet Hall</div>
-    <div class="mr-strip-item"><span>&#10003;</span>Premium Guest Accommodation</div>
-    <div class="mr-strip-item"><span>&#10003;</span>Swimming Pool Experience</div>
-    <div class="mr-strip-item"><span>&#10003;</span>Professional Event Support</div>
-    <div class="mr-strip-item"><span>&#10003;</span>Fully Customisable Packages</div>
-  </div>
-</section>
-
-<div class="mr-divider"><span></span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4z"/></svg><span></span></div>
-
 <!-- ============ BANQUET COST ESTIMATOR ============ -->
 <section class="mr-section" id="estimator">
   <div class="mr-head mr-reveal">
@@ -1359,15 +1246,15 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
       <span class="mr-eyebrow" style="justify-content:center;">Your Estimate</span>
       <div class="mr-est-row">
         <span>Guests</span>
-        <strong id="sumGuests">400</strong>
+        <strong id="sumGuests">&mdash;</strong>
       </div>
       <div class="mr-est-row">
         <span>Plate Price</span>
-        <strong id="sumPlate">&#8377;999</strong>
+        <strong id="sumPlate">&mdash;</strong>
       </div>
       <div class="mr-est-total">
         <span>Estimated Cost</span>
-        <div class="mr-est-total-num" id="sumTotal">&#8377;0</div>
+        <div class="mr-est-total-num" id="sumTotal">&mdash;</div>
       </div>
       <p class="mr-est-note">Want the Best Deal?</p>
       <button type="button" class="mr-btn mr-btn-solid" id="estQuoteBtn" style="width:100%; justify-content:center;">Request Custom Quote</button>
@@ -1377,7 +1264,7 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
   </div>
 
   <div class="mr-est-sticky" id="estStickyBar">
-    <div><span>Estimated Total</span><strong id="stickyTotal">&#8377;0</strong></div>
+    <div><span>Estimated Total</span><strong id="stickyTotal">&mdash;</strong></div>
     <button type="button" class="mr-btn mr-btn-solid" id="estStickyBtn">Get Quote</button>
   </div>
 </section>
@@ -1388,67 +1275,18 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 <section class="mr-section" id="gallery">
   <div class="mr-head center mr-reveal">
     <span class="mr-eyebrow">Gallery</span>
-    <h2>Gallery Coming Soon</h2>
-    <p class="mr-lede" style="margin:0 auto;">A first look at Manoram Resorts as it takes shape — the complete gallery will grow once we welcome our first guests.</p>
+    <h2>A Glimpse of Manoram Resorts</h2>
+    <p class="mr-lede" style="margin:0 auto;">A closer look at our rooms, lawns and celebration spaces.</p>
   </div>
   <div class="mr-gallery-grid mr-reveal">
-    <div class="mr-gph-photo"><img src="images/resort-exterior-01.jpg" alt="Manoram Resorts illuminated facade at night with wedding lawn setup" loading="lazy" decoding="async"></div>
+    <div class="mr-gph-photo"><img src="images/resort-exterior-01.jpg" alt="Manoram Resorts illuminated facade at night with lawn set up for a celebration" loading="lazy" decoding="async"></div>
     <div class="mr-gph-photo"><img src="images/pool-01.jpg" alt="Resort swimming pool with lotus mural feature" loading="lazy" decoding="async"></div>
     <div class="mr-gph-photo"><img src="images/room-01.jpg" alt="Premium guest room interior" loading="lazy" decoding="async"></div>
-    <div class="mr-gph-photo"><img src="images/hall-02.jpg" alt="Floral ceiling installation over the wedding lawn" loading="lazy" decoding="async"></div>
-    <div class="mr-gph-photo"><img src="images/lawn-01.jpg" alt="Wedding lawn decorated for an evening celebration" loading="lazy" decoding="async"></div>
-    <div class="mr-gph-photo"><img src="images/resort-exterior-03.jpg" alt="Manoram Resorts entrance canopy at sunset" loading="lazy" decoding="async"></div>
+    <div class="mr-gph-photo"><img src="images/hall-02.jpg" alt="Elegant indoor lounge seating area at Manoram Resorts" loading="lazy" decoding="async"></div>
+    <div class="mr-gph-photo"><img src="images/lawn-01.jpg" alt="Illuminated floral canopy installations above the celebration lawn" loading="lazy" decoding="async"></div>
+    <div class="mr-gph-photo"><img src="images/resort-exterior-03.jpg" alt="Manoram Resorts entrance canopy at night" loading="lazy" decoding="async"></div>
     <div class="mr-gph-photo"><img src="images/main-gate.jpg" alt="Manoram Resorts main entrance gate at night" loading="lazy" decoding="async"></div>
-    <div class="mr-gph-photo"><img src="images/resort-exterior-05.jpg" alt="Aerial drone view of Manoram Resorts at dusk" loading="lazy" decoding="async"></div>
-  </div>
-</section>
-
-<div class="mr-divider"><span></span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4z"/></svg><span></span></div>
-
-<!-- ============ CONSTRUCTION TIMELINE ============ -->
-<section class="mr-section" id="construction">
-  <div class="mr-head center mr-reveal" style="margin-left:auto;margin-right:auto;">
-    <span class="mr-eyebrow">Progress</span>
-    <h2>Currently Under Construction</h2>
-    <p class="mr-lede" style="margin:0 auto;">Follow our journey as Manoram Resorts takes shape on Medical College Road — from foundation to final finish, ahead of our September 2026 opening.</p>
-  </div>
-  <div class="mr-progress-track mr-reveal">
-    <div class="mr-progress-fill" id="mrProgressFill"></div>
-  </div>
-  <div class="mr-progress-label mr-reveal">
-    <span>Construction Begun</span>
-    <strong id="mrProgressPct">0% Complete</strong>
-    <span>Grand Opening</span>
-  </div>
-  <div class="mr-timeline-grid" id="mrTimeline">
-    <div class="mr-tl-item mr-glass mr-reveal d1" data-start="2025-12-01" data-end="2026-02-28">
-      <div class="mr-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg></div>
-      <span class="mr-tl-when">Dec 2025 – Feb 2026</span>
-      <h4>Foundation &amp; Structure</h4>
-      <p>Core structural work, groundwork and the building's framework.</p>
-      <span class="mr-tl-status">Status</span>
-    </div>
-    <div class="mr-tl-item mr-glass mr-reveal d2" data-start="2026-03-01" data-end="2026-06-30">
-      <div class="mr-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg></div>
-      <span class="mr-tl-when">Mar 2026 – Jun 2026</span>
-      <h4>Interiors &amp; Finishing</h4>
-      <p>Rooms, banquet halls and interiors take shape with premium finishes.</p>
-      <span class="mr-tl-status">Status</span>
-    </div>
-    <div class="mr-tl-item mr-glass mr-reveal d3" data-start="2026-07-01" data-end="2026-08-25">
-      <div class="mr-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/></svg></div>
-      <span class="mr-tl-when">Jul 2026 – Aug 2026</span>
-      <h4>Landscaping &amp; Amenities</h4>
-      <p>Lawns, façade, amenities and finishing touches come together.</p>
-      <span class="mr-tl-status">Status</span>
-    </div>
-    <div class="mr-tl-item mr-glass mr-reveal d4" data-start="2026-08-26" data-end="2026-09-11">
-      <div class="mr-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21 8 13.5 2.5 9h7z"/></svg></div>
-      <span class="mr-tl-when">September 2026</span>
-      <h4>Grand Opening</h4>
-      <p>Final inspections and preparations before we welcome our first guests.</p>
-      <span class="mr-tl-status">Status</span>
-    </div>
+    <div class="mr-gph-photo"><img src="images/resort-exterior-05.jpg" alt="Manoram Resorts facade and lawn illuminated at night" loading="lazy" decoding="async"></div>
   </div>
 </section>
 
@@ -1456,8 +1294,8 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 
 <!-- ============ LOCATION ============ -->
 <section class="mr-section" id="location">
-  <div class="mr-photo-tile mr-reveal" style="max-width:640px; margin:0 auto 44px; aspect-ratio:16/9;">
-    <img src="images/main-gate.jpg" alt="Manoram Resorts main entrance gate, Medical College Road, Gorakhpur" loading="lazy" decoding="async">
+  <div class="mr-photo-tile mr-reveal" style="max-width:420px; margin:0 auto 44px; aspect-ratio:3/4;">
+    <img src="images/main-gate.jpg" alt="Manoram Resorts main entrance gate, Medical College Road, Gorakhpur" loading="lazy" decoding="async" style="object-position:center top;">
     <div class="mr-photo-cap">Manoram Resorts — Main Entrance</div>
   </div>
   <div class="mr-loc-grid">
@@ -1578,7 +1416,7 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
           <textarea id="message" name="message" placeholder="Tell us a little about what you're planning..."></textarea>
         </div>
         <button type="submit" class="mr-btn mr-btn-solid mr-form-submit" id="mrFormSubmit">Send Enquiry via WhatsApp</button>
-        <p class="mr-form-note">Submitting will save your enquiry and open WhatsApp with your details pre-filled to +91 96702 84888.</p>
+        <p class="mr-form-note">Share your details and our team will get back to you shortly.</p>
         <div class="mr-form-success" id="mrFormSuccess">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M20 6L9 17l-5-5"/></svg>
           <h4>Opening WhatsApp…</h4>
@@ -1628,11 +1466,11 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
     </div>
     <div class="mr-footer-col">
       <h5>Quick Links</h5>
-      <ul><li><a href="#about">About</a></li><li><a href="#stay">Luxury Stay</a></li><li><a href="#weddings">Weddings</a></li><li><a href="#events">Events</a></li></ul>
+      <ul><li><a href="#about">About</a></li><li><a href="#stay">Luxury Stay</a></li><li><a href="#weddings">Weddings</a></li><li><a href="#amenities">Amenities</a></li></ul>
     </div>
     <div class="mr-footer-col">
       <h5>Explore</h5>
-      <ul><li><a href="#amenities">Amenities</a></li><li><a href="#estimator">Estimate Cost</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#location">Location</a></li><li><a href="#contact">Book Now</a></li></ul>
+      <ul><li><a href="#estimator">Estimate Cost</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#location">Location</a></li><li><a href="#contact">Book Now</a></li></ul>
     </div>
     <div class="mr-footer-col">
       <h5>Contact</h5>
@@ -1883,30 +1721,6 @@ function markEnquirySubmitted(){
   }
   tick();
   setInterval(tick, 1000);
-})();
-
-/* ============ CONSTRUCTION TIMELINE STATUS ============ */
-(function(){
-  const items = document.querySelectorAll('#mrTimeline .mr-tl-item');
-  const fill = document.getElementById('mrProgressFill');
-  const pct = document.getElementById('mrProgressPct');
-  if(!items.length) return;
-  const start = new Date('2025-12-01T00:00:00+05:30').getTime();
-  const end = new Date('2026-09-11T00:00:00+05:30').getTime();
-  const now = Date.now();
-  let p = ((now-start)/(end-start))*100;
-  p = Math.max(0, Math.min(100,p));
-  fill.style.width = p + '%';
-  pct.textContent = Math.round(p) + '% Complete';
-  items.forEach(item => {
-    const s = new Date(item.dataset.start + 'T00:00:00+05:30').getTime();
-    const e = new Date(item.dataset.end + 'T23:59:59+05:30').getTime();
-    const statusEl = item.querySelector('.mr-tl-status');
-    let status = 'Upcoming';
-    if(now > e){ item.classList.add('done'); status = 'Completed'; }
-    else if(now >= s && now <= e){ item.classList.add('active'); status = 'In Progress'; }
-    statusEl.textContent = status;
-  });
 })();
 
 /* ============ BANQUET COST ESTIMATOR ============ */
@@ -2504,3 +2318,4 @@ function markEnquirySubmitted(){
 </script>
 </body>
 </html>
+
