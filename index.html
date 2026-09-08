@@ -190,10 +190,15 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 /* ============ HERO ============ */
 .mr-hero{
   position:relative; min-height:94vh;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  text-align:center; padding:130px 6vw 70px; overflow:hidden;
+  display:flex; flex-direction:column; align-items:flex-start; justify-content:center;
+  text-align:left; padding:130px 7vw 70px; overflow:hidden;
   color:var(--ink);
 }
+.mr-hero-content{ width:100%; max-width:1060px; }
+.mr-hero-eyebrow::after{ display:none; }
+.mr-hero h1, .mr-hero-loc, .mr-hero-tags, .mr-hero-actions{ max-width:640px; }
+.mr-hero-rule{ margin-left:0; margin-right:auto; }
+.mr-hero-actions{ justify-content:flex-start; }
 /* Resort photograph, subtle Ken-Burns drift for gentle
    non-intrusive motion. Sits under a light layered treatment so
    the image stays clearly visible while every word above it reads
@@ -208,33 +213,19 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 }
 @keyframes mrHeroDrift{ from{ transform:scale(1.06) translate3d(0,0,0); } to{ transform:scale(1.13) translate3d(0,-1.2%,0); } }
 .mr-hero-bg{
+  /* Kept light and asymmetric so the actual photograph remains the hero.
+     Darkens only the lower-left quadrant, just enough to carry type. */
   position:absolute; inset:0; z-index:1;
   background:
-    linear-gradient(180deg, rgba(6,9,7,.58) 0%, rgba(7,10,8,.22) 34%, rgba(7,10,8,.3) 62%, rgba(6,9,7,.6) 100%);
+    linear-gradient(180deg, rgba(6,9,7,.30) 0%, rgba(6,9,7,0) 30%, rgba(6,9,7,0) 55%, rgba(6,9,7,.46) 100%),
+    linear-gradient(100deg, rgba(6,9,7,.42) 0%, rgba(6,9,7,.18) 32%, rgba(6,9,7,0) 58%);
 }
 .mr-hero-vignette{
   position:absolute; inset:0; z-index:1; pointer-events:none;
-  box-shadow:inset 0 0 min(14vw,200px) rgba(0,0,0,.4);
+  box-shadow:inset 0 0 min(7vw,90px) rgba(0,0,0,.18);
 }
-.mr-hero-fog{
-  position:absolute; inset:0; z-index:1; opacity:.32; mix-blend-mode:screen;
-  background:
-    radial-gradient(ellipse at 50% 8%, rgba(210,180,95,.16), transparent 55%);
-  animation:mrFog 12s ease-in-out infinite alternate;
-}
-@keyframes mrFog{ from{ opacity:.2; } to{ opacity:.4; } }
-.mr-hero-particles{ position:absolute; inset:0; z-index:1; overflow:hidden; pointer-events:none; }
-.mr-hero-particles span{
-  position:absolute; bottom:-6%; width:3px; height:3px; border-radius:50%;
-  background:var(--gold-2); opacity:0; box-shadow:0 0 6px 1px rgba(210,180,95,.7);
-  animation:mrHeroParticle linear infinite;
-}
-@keyframes mrHeroParticle{
-  0%{ transform:translateY(0) translateX(0); opacity:0; }
-  10%{ opacity:.75; }
-  90%{ opacity:.4; }
-  100%{ transform:translateY(-112vh) translateX(6vw); opacity:0; }
-}
+.mr-hero-fog{ display:none; }
+.mr-hero-particles{ display:none; }
 .mr-hero-corner{
   position:absolute; width:min(120px,14vw); height:min(120px,14vw); z-index:2; pointer-events:none;
   opacity:.55;
@@ -2318,4 +2309,3 @@ function markEnquirySubmitted(){
 </script>
 </body>
 </html>
-
