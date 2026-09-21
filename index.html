@@ -167,9 +167,7 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
   transition:padding .4s var(--ease);
 }
 .mr-nav-brand{ display:flex; align-items:center; gap:10px; }
-.mr-nav-brand img{ height:36px; width:auto; object-fit:contain; }
-.mr-nav-brand span{ font-family:var(--serif); font-size:1.05rem; letter-spacing:.02em; }
-.mr-nav-brand b{ color:var(--forest); font-weight:500; }
+.mr-nav-brand img{ height:64px; width:auto; object-fit:contain; }
 .mr-nav-links{ display:flex; gap:30px; }
 .mr-nav-links a{
   font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);
@@ -226,6 +224,22 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
   will-change:transform;
 }
 @keyframes mrHeroDrift{ from{ transform:scale(1); } to{ transform:scale(1.015); } }
+/* Drone footage layered directly above the static photo, at the
+   same stacking position — DOM order alone puts it on top. It
+   starts invisible and only fades in once JS confirms playback
+   actually started, so the photo underneath is always the real
+   fallback: failed/blocked autoplay, reduced motion, or a data
+   saver connection all just leave this at opacity 0 forever and
+   the page never shows anything broken. */
+.mr-hero-video{
+  position:absolute; inset:0; z-index:0;
+  width:100%; height:100%; object-fit:cover; object-position:center center;
+  opacity:0; transition:opacity 1.4s ease; pointer-events:none;
+}
+.mr-hero-video.is-playing{ opacity:1; }
+@media (prefers-reduced-motion:reduce){
+  .mr-hero-video{ display:none; }
+}
 .mr-hero-bg{
   /* One soft diagonal wash confined to the left ~55%, where the
      typography sits. The right side of the photograph is left
@@ -780,7 +794,6 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 /* ============ FOOTER ============ */
 .mr-footer{ border-top:1px solid var(--line-soft); margin-top:60px; padding:76px 6vw 30px; }
 .mr-footer-top{ max-width:1360px; margin:0 auto; display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:44px; }
-.mr-footer-brand span{ font-family:var(--serif); font-size:1.3rem; }
 .mr-footer-brand p{ margin-top:16px; color:var(--muted); font-size:0.91rem; max-width:32ch; }
 .mr-footer-socials{ display:flex; gap:12px; margin-top:20px; }
 .mr-footer-socials a{
@@ -943,7 +956,7 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
   .mr-divider{ padding:0 6vw; opacity:.4; }
   .mr-form-row{ grid-template-columns:1fr; }
   .mr-footer-top{ grid-template-columns:1fr; gap:32px; }
-  .mr-hero{ padding:112px 5vw 48px; min-height:100svh; }
+  .mr-hero{ padding:136px 5vw 48px; min-height:100svh; }
   .mr-hero-content{ max-width:none; }
   .mr-hero-photo{ background-position:64% 50%; }
   .mr-hero-bg{
@@ -1101,8 +1114,7 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 <div class="mr-nav-wrap" id="mrNavWrap">
   <nav class="mr-nav mr-glass" id="mrNav">
     <a href="#home" class="mr-nav-brand">
-      <img src="images/manoram-logo.png" alt="Manoram Resorts crest">
-      <span>Manoram <b>Resorts</b></span>
+      <img src="images/manoram-logo.png" alt="Manoram Resorts">
     </a>
     <div class="mr-nav-links">
       <a href="#about">About</a>
@@ -1135,6 +1147,7 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 <!-- ============ HERO ============ -->
 <header class="mr-hero" id="home">
   <div class="mr-hero-photo"></div>
+  <video class="mr-hero-video" poster="images/hero-main.jpg" muted loop playsinline preload="none" disablePictureInPicture disableRemotePlayback aria-hidden="true" tabindex="-1"></video>
   <div class="mr-hero-bg"></div>
   <div class="mr-hero-vignette"></div>
   <div class="mr-hero-fog"></div>
@@ -1233,6 +1246,17 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
     </div>
 
     <p class="mr-launch-notice mr-reveal d4">Only the first 11 confirmed celebrations are eligible for this exclusive privilege. <strong>Terms &amp; Conditions Apply.</strong></p>
+  </div>
+</section>
+
+<!-- ============ AERIAL VIDEO CTA ============ -->
+<section class="mr-section" id="aerial-video" style="padding-top:min(6vw,60px); padding-bottom:min(6vw,60px);">
+  <div class="mr-head center mr-reveal">
+    <span class="mr-eyebrow" style="justify-content:center;">Aerial View</span>
+    <h2>Experience Manoram Resorts from Above</h2>
+  </div>
+  <div class="mr-center-cta mr-reveal" style="margin-top:24px;">
+    <a href="https://youtu.be/9G8x1m5z9kU" target="_blank" rel="noopener" class="mr-btn mr-btn-solid">Watch on YouTube</a>
   </div>
 </section>
 
@@ -1626,8 +1650,7 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
 <footer class="mr-footer">
   <div class="mr-footer-top">
     <div class="mr-footer-brand">
-      <img src="images/manoram-logo.png" alt="Manoram Resorts crest" style="width:120px;height:auto;object-fit:contain;margin-bottom:14px;">
-      <span>Manoram Resorts</span>
+      <img src="images/manoram-logo.png" alt="Manoram Resorts" style="width:190px;height:auto;object-fit:contain;margin-bottom:16px;">
       <p>Medical College Road, Gorakhpur — now open for luxury stays, weddings and events.</p>
       <div class="mr-footer-socials">
         <a href="https://www.instagram.com/manoramresorts/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
@@ -1800,6 +1823,54 @@ h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; color:var(--ivory); lett
   // Belt-and-suspenders: no matter what else happens on the page,
   // never leave a section hidden for more than a couple of seconds.
   setTimeout(revealAll, 2200);
+})();
+
+/* ============ HERO DRONE VIDEO ============
+   The static photo (.mr-hero-photo) is always present underneath
+   and is the real fallback — this block only ever ADDS the video
+   on top of it, never replaces it. No <source> is written in the
+   HTML at all, so nothing here downloads a single byte unless
+   every condition below is met:
+     - the visitor hasn't asked for reduced motion
+     - there's no active Data Saver mode / known-slow connection
+     - the browser actually succeeds in starting playback
+   Any failure at any step — blocked autoplay, network error,
+   an older browser with no video support — simply leaves the
+   video at opacity 0 forever, so the photo shows exactly as it
+   always did. */
+(function(){
+  try {
+    var video = document.querySelector('.mr-hero-video');
+    if(!video) return;
+
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduceMotion) return;
+
+    var conn = navigator.connection || navigator.webkitConnection || navigator.mozConnection;
+    if(conn && (conn.saveData || /2g/.test(conn.effectiveType || ''))) return;
+
+    var source = document.createElement('source');
+    source.src = 'videos/manoram-drone.mp4';
+    source.type = 'video/mp4';
+    video.appendChild(source);
+    video.load();
+
+    var playPromise = video.play();
+    if(playPromise && typeof playPromise.then === 'function'){
+      playPromise.then(function(){
+        video.classList.add('is-playing');
+      }).catch(function(){
+        // Autoplay blocked (common on some mobile/data-saver setups) —
+        // do nothing; the static photo underneath is already showing.
+      });
+    } else {
+      // Very old browsers with no Promise-based play(): rely on the
+      // 'playing' event instead, with the same silent no-op on failure.
+      video.addEventListener('playing', function(){ video.classList.add('is-playing'); }, { once:true });
+    }
+  } catch(err){
+    // Never let a video-specific failure affect the rest of the page.
+  }
 })();
 
 /* ============ GOOGLE SHEETS ENQUIRY BACKEND ============
